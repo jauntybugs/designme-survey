@@ -203,9 +203,9 @@
         }
 
         #email-block input[type="email"] {
-            padding: 10px; /* Match other inputs */
-            font-size: clamp(0.9rem, 2.5vw, 1rem); /* Match other inputs */
-            border: 1px solid #E5E7EB; /* Match other inputs */
+            padding: 10px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border: 1px solid #E5E7EB;
             background-color: var(--white);
             transition: border-color 0.2s ease;
         }
@@ -222,7 +222,6 @@
             color: var(--white);
         }
 
-        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -376,7 +375,7 @@
             <p>Thank you for your interest in DesignMe! As we prepare to launch our new design platform, your feedback will help us create a product that truly meets your needs.</p>
         </div>
 
-        <form name="designme-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form name="designme-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
             <input type="hidden" name="form-name" value="designme-survey" />
             <p class="hidden" style="display:none">
                 <label>Don't fill this out if you're human: <input name="bot-field" /></label>
