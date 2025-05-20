@@ -1,0 +1,1 @@
+Exciting news! 🎉 DesignMe, an AI-powered design platform for non-designers in Africa, is coming soon! Create stunning, culturally relevant designs with ease using our drag-and-drop interface and smart suggestions. Sign up for the waitlist now! 👉 www.designme.africa  
