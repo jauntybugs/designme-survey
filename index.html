@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignMe Pre-Launch Survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* DesignMe brand colors */
+            --primary: #0B1F3A;       /* Primary brand color */
+            --primary-dark: #081729;  /* Darker shade for hover states */
+            --secondary: #1E88E5;     /* Accent color */
+            --light: #F3F4F6;         /* Light gray for backgrounds */
+            --dark: #1F2937;          /* Dark gray for text */
+            --error: #EF4444;         /* Red for errors */
+            --white: #FFFFFF;         /* White */
+            --card-bg: #FFFFFF;       /* Card background */
+            --border-radius: 8px;     /* Rounded corners */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .survey-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--white);
+        }
+
+        .logo {
+            max-width: 180px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .survey-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--light);
+            color: var(--primary);
+        }
+
+        .question-block {
+            margin-bottom: 32px;
+        }
+
+        .question {
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .other-specify {
+            margin-top: 8px;
+            display: none; /* Initially hidden */
+        }
+
+        input[type="radio"]:checked ~ .other-specify,
+        input[type="checkbox"]:checked ~ .other-specify {
+            display: block;
+        }
+
+        .rank-question .options {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .rank-item select {
+            width: 60px;
+        }
+
+        .importance-grid {
+            display: grid;
+            grid-template-columns: 1fr repeat(4, auto);
+            gap: 12px;
+            align-items: center;
+        }
+
+        .importance-header {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            padding: 8px 4px;
+        }
+
+        .importance-feature {
+            padding: 12px 8px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .importance-radio {
+            text-align: center;
+        }
+
+        .submit-row {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .optional-section {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .thank-you {
+            text-align: center;
+            font-size: 18px;
+            margin: 40px 0;
+            color: var(--white);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .importance-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .importance-header {
+                display: none;
+            }
+            
+            .importance-feature {
+                border-top: none;
+                font-weight: 600;
+            }
+            
+            .importance-radio {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 16px;
+                border-bottom: 1px solid #E5E7EB;
+                padding-bottom: 16px;
+            }
+            
+            .importance-radio label {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="survey-header">
+            <!-- DesignMe logo from Cloudinary -->
+            <img src="https://res.cloudinary.com/dreamsavvy/image/upload/v1747323397/designMe_Logo-removebg-preview_ntdaxb.png" alt="DesignMe Logo" class="logo">
+            <h1>Pre-Launch Survey</h1>
+            <p>Thank you for your interest in DesignMe! As we prepare to launch our new design platform, your feedback will help us create a product that truly meets your needs.</p>
+        </div>
+
+        <form id="designme-survey" name="designme-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <!-- Netlify form detection fields -->
+            <input type="hidden" name="form-name" value="designme-survey" />
+            <p class="hidden" style="display:none">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+            <!-- Design Tool Experience & Needs -->
+            <div class="survey-card">
+                <h2 class="section-title">Design Tool Experience & Needs</h2>
+                
+                <!-- Question 1: Frequency -->
+                <div class="question-block">
+                    <label class="question">1. How frequently do you use design tools in your work or personal projects?</label>
+                    <div class="options">
+                        <div class="radio-option">
+                            <input type="radio" id="freq-daily" name="frequency" value="Daily" required>
+                            <label for="freq-daily">Daily</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq-weekly-2-3" name="frequency" value="2-3 times per week">
+                            <label for="freq-weekly-2-3">2-3 times per week</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq-weekly" name="frequency" value="Once a week">
+                            <label for="freq-weekly">Once a week</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq-monthly-2-3" name="frequency" value="2-3 times per month">
+                            <label for="freq-monthly-2-3">2-3 times per month</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq-monthly" name="frequency" value="Monthly or less">
+                            <label for="freq-monthly">Monthly or less</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq-rarely" name="frequency" value="Rarely">
+                            <label for="freq-rarely">I rarely use design tools</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 2: Use cases -->
+                <div class="question-block">
+                    <label class="question">2. What are your primary use cases for design tools? (Select all that apply)</label>
+                    <div class="options">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-personal" name="use_cases" value="Personal creative projects">
+                            <label for="use-personal">Personal creative projects</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-professional" name="use_cases" value="Professional design work">
+                            <label for="use-professional">Professional design work</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-educational" name="use_cases" value="Educational purposes">
+                            <label for="use-educational">Educational purposes</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-social" name="use_cases" value="Social media content creation">
+                            <label for="use-social">Social media content creation</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-marketing" name="use_cases" value="Marketing materials">
+                            <label for="use-marketing">Marketing materials</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-ui" name="use_cases" value="User interface/website design">
+                            <label for="use-ui">User interface/website design</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use-other" name="use_cases" value="Other">
+                            <label for="use-other">Other</label>
+                            <input type="text" class="other-specify" name="use_cases_other" placeholder="Please specify">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 3: Current tools -->
+                <div class="question-block">
+                    <label class="question">3. Which design tools do you currently use? (Select all that apply)</label>
+                    <div class="options">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-adobe" name="current_tools" value="Adobe Creative Suite">
+                            <label for="tool-adobe">Adobe Creative Suite (Photoshop, Illustrator, etc.)</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-figma" name="current_tools" value="Figma">
+                            <label for="tool-figma">Figma</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-canva" name="current_tools" value="Canva">
+                            <label for="tool-canva">Canva</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-sketch" name="current_tools" value="Sketch">
+                            <label for="tool-sketch">Sketch</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-corel" name="current_tools" value="CorelDRAW">
+                            <label for="tool-corel">CorelDRAW</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-affinity" name="current_tools" value="Affinity Designer">
+                            <label for="tool-affinity">Affinity Designer</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool-other" name="current_tools" value="Other">
+                            <label for="tool-other">Other</label>
+                            <input type="text" class="other-specify" name="current_tools_other" placeholder="Please specify">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 4: Pain points -->
+                <div class="question-block">
+                    <label class="question">4. What is your biggest pain point or challenge with your current design tools?</label>
+                    <textarea name="pain_points" required></textarea>
+                </div>
+                
+                <!-- Question 5: Satisfaction -->
+                <div class="question-block">
+                    <label class="question">5. On a scale of 1-10, how satisfied are you with your current design solution(s)?</label>
+                    <div class="options">
+                        <select name="satisfaction" required>
+                            <option value="" disabled selected>Select rating</option>
+                            <option value="1">1 - Not at all satisfied</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10 - Extremely satisfied</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DesignMe Features & Competitive Edge -->
+            <div class="survey-card">
+                <h2 class="section-title">DesignMe Features & Competitive Edge</h2>
+                
+                <!-- Question 6: Feature importance -->
+                <div class="question-block rank-question">
+                    <label class="question">6. Which of the following features would be most important for you in a new design tool? (Rank from 1-5, with 1 being most important)</label>
+                    <div class="options">
+                        <div class="rank-item">
+                            <select name="rank_ai" required>
+                                <option value="" disabled selected>Rank</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>AI-assisted design capabilities</label>
+                        </div>
+                        <div class="rank-item">
+                            <select name="rank_templates" required>
+                                <option value="" disabled selected>Rank</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Extensive template library</label>
+                        </div>
+                        <div class="rank-item">
+                            <select name="rank_collaboration" required>
+                                <option value="" disabled selected>Rank</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Intuitive collaboration features</label>
+                        </div>
+                        <div class="rank-item">
+                            <select name="rank_integration" required>
+                                <option value="" disabled selected>Rank</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Seamless integration with other software</label>
+                        </div>
+                        <div class="rank-item">
+                            <select name="rank_customization" required>
+                                <option value="" disabled selected>Rank</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Advanced customization options</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 7: Missing features -->
+                <div class="question-block">
+                    <label class="question">7. What features are missing from your current design tools that you wish existed?</label>
+                    <textarea name="missing_features" required></textarea>
+                </div>
+                
+                <!-- Question 8: Feature importance -->
+                <div class="question-block">
+                    <label class="question">8. How important would the following potential DesignMe features be to you?</label>
+                    <div class="importance-grid">
+                        <div></div>
+                        <div class="importance-header">Not important</div>
+                        <div class="importance-header">Somewhat important</div>
+                        <div class="importance-header">Very important</div>
+                        <div class="importance-header">Essential</div>
+                        
+                        <div class="importance-feature">Real-time team collaboration</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="collab-1" name="importance_collaboration" value="Not important" required>
+                            <label for="collab-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="collab-2" name="importance_collaboration" value="Somewhat important">
+                            <label for="collab-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="collab-3" name="importance_collaboration" value="Very important">
+                            <label for="collab-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="collab-4" name="importance_collaboration" value="Essential">
+                            <label for="collab-4"></label>
+                        </div>
+                        
+                        <div class="importance-feature">Mobile app with full functionality</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="mobile-1" name="importance_mobile" value="Not important" required>
+                            <label for="mobile-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="mobile-2" name="importance_mobile" value="Somewhat important">
+                            <label for="mobile-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="mobile-3" name="importance_mobile" value="Very important">
+                            <label for="mobile-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="mobile-4" name="importance_mobile" value="Essential">
+                            <label for="mobile-4"></label>
+                        </div>
+                        
+                        <div class="importance-feature">Advanced animation capabilities</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="anim-1" name="importance_animation" value="Not important" required>
+                            <label for="anim-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="anim-2" name="importance_animation" value="Somewhat important">
+                            <label for="anim-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="anim-3" name="importance_animation" value="Very important">
+                            <label for="anim-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="anim-4" name="importance_animation" value="Essential">
+                            <label for="anim-4"></label>
+                        </div>
+                        
+                        <div class="importance-feature">AI-powered content generation</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="ai-1" name="importance_ai" value="Not important" required>
+                            <label for="ai-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="ai-2" name="importance_ai" value="Somewhat important">
+                            <label for="ai-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="ai-3" name="importance_ai" value="Very important">
+                            <label for="ai-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="ai-4" name="importance_ai" value="Essential">
+                            <label for="ai-4"></label>
+                        </div>
+                        
+                        <div class="importance-feature">Design analytics and insights</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="analytics-1" name="importance_analytics" value="Not important" required>
+                            <label for="analytics-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="analytics-2" name="importance_analytics" value="Somewhat important">
+                            <label for="analytics-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="analytics-3" name="importance_analytics" value="Very important">
+                            <label for="analytics-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="analytics-4" name="importance_analytics" value="Essential">
+                            <label for="analytics-4"></label>
+                        </div>
+                        
+                        <div class="importance-feature">Extensive asset library</div>
+                        <div class="importance-radio">
+                            <input type="radio" id="library-1" name="importance_library" value="Not important" required>
+                            <label for="library-1"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="library-2" name="importance_library" value="Somewhat important">
+                            <label for="library-2"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="library-3" name="importance_library" value="Very important">
+                            <label for="library-3"></label>
+                        </div>
+                        <div class="importance-radio">
+                            <input type="radio" id="library-4" name="importance_library" value="Essential">
+                            <label for="library-4"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 9: Motivation to switch -->
+                <div class="question-block">
+                    <label class="question">9. What would motivate you to switch from your current design tool(s) to a new platform like DesignMe?</label>
+                    <textarea name="motivation_switch" required></textarea>
+                </div>
+                
+                <!-- Question 10: Revolutionary feature -->
+                <div class="question-block">
+                    <label class="question">10. If you could have one feature in a design tool that would revolutionize your workflow, what would it be?</label>
+                    <textarea name="revolutionary_feature" required></textarea>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="survey-card optional-section">
+                <h2 class="section-title">Additional Information (Optional)</h2>
+                
+                <div class="question-block">
+                    <label class="question">What is your design skill level?</label>
+                    <div class="options">
+                        <select name="skill_level">
+                            <option value="" disabled selected>Select skill level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <label class="question">What industry do you work in?</label>
+                    <input type="text" name="industry" placeholder="E.g., Marketing, Education, Technology...">
+                </div>
+                
+                <div class="question-block">
+                    <label class="question">Would you be interested in participating in beta testing for DesignMe?</label>
+                    <div class="options">
+                        <div class="radio-option">
+                            <input type="radio" id="beta-yes" name="beta_interest" value="Yes">
+                            <label for="beta-yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="beta-no" name="beta_interest" value="No">
+                            <label for="beta-no">No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block" id="email-block">
+                    <label class="question">Email address (if interested in updates or beta testing)</label>
+                    <input type="email" name="email" placeholder="you@example.com">
+                </div>
+            </div>
+
+            <div class="submit-row">
+                <button type="submit">Submit Survey</button>
+            </div>
+
+            <div class="thank-you">
+                <p>Thank you for your valuable feedback! Your insights will help us build DesignMe to meet your design needs from day one.</p>
+            </div>
+        </form>
+    </div>
+
+    <!-- Form handling script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show "other" input fields when "other" options are selected
+            const otherCheckboxes = document.querySelectorAll('input[type="checkbox"][id$="other"]');
+            otherCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const otherInput = this.parentNode.querySelector('.other-specify');
+                    if (this.checked) {
+                        otherInput.style.display = 'block';
+                        otherInput.setAttribute('required', 'required');
+                    } else {
+                        otherInput.style.display = 'none';
+                        otherInput.removeAttribute('required');
+                    }
+                });
+            });
+
+            // Show email field only if beta testing interest is "Yes"
+            const betaYes = document.getElementById('beta-yes');
+            const betaNo = document.getElementById('beta-no');
+            const emailBlock = document.getElementById('email-block');
+            
+            betaYes.addEventListener('change', function() {
+                if (this.checked) {
+                    emailBlock.style.display = 'block';
+                    emailBlock.querySelector('input[name="email"]').setAttribute('required', 'required');
+                }
+            });
+            
+            betaNo.addEventListener('change', function() {
+                if (this.checked) {
+                    emailBlock.style.display = 'none';
+                    emailBlock.querySelector('input[name="email"]').removeAttribute('required');
+                }
+            });
+            
+            <!-- Form submission handler -->
+            const form = document.getElementById('designme-survey');
+            form.addEventListener('submit', function(event) {
+                // The form will be handled by Netlify's built-in form handling
+                // We don't need to prevent default or manually process the submission
+                
+                // You can add additional validation or UI feedback here if needed
+                console.log('Form submitted to Netlify');
+                
+                // Note: Netlify will handle redirects after form submission
+                // You can set up a custom success page in your Netlify settings
+            });
+            });
+        });
+    </script>
+</body>
+</html>
