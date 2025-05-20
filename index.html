@@ -10,15 +10,15 @@
     <style>
         :root {
             /* DesignMe brand colors */
-            --primary: #1A2A44;       /* Primary brand color */
-            --primary-dark: #0B1F3A;  /* Darker shade for hover states */
-            --secondary: #F28C38;     /* Accent color */
-            --light: #F3F4F6;         /* Light gray for backgrounds */
-            --dark: #1F2937;          /* Dark gray for text */
-            --error: #EF4444;         /* Red for errors */
-            --white: #F5F5F5;         /* White */
-            --card-bg: #4ABDAC;       /* Card background */
-            --border-radius: 8px;     /* Rounded corners */
+            --primary: #1A2A44;
+            --primary-dark: #0B1F3A;
+            --secondary: #F28C38;
+            --light: #F3F4F6;
+            --dark: #1F2937;
+            --error: #EF4444;
+            --white: #F5F5F5;
+            --card-bg: #4ABDAC;
+            --border-radius: 8px;
         }
 
         * {
@@ -32,35 +32,36 @@
             background-color: var(--primary);
             color: var(--dark);
             line-height: 1.6;
-            padding: 20px;
+            padding: 15px;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         .survey-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: var(--white);
         }
 
         .logo {
-            max-width: 180px;
-            margin-bottom: 24px;
+            max-width: 150px;
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 28px;
-            margin-bottom: 16px;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 12px;
             color: var(--white);
         }
 
         p {
-            font-size: 16px;
-            margin-bottom: 24px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-bottom: 20px;
             color: var(--white);
         }
 
@@ -68,31 +69,32 @@
             background: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            padding: 32px;
-            margin-bottom: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .section-title {
-            font-size: 20px;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
+            font-size: clamp(1.1rem, 3vw, 1.25rem);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
             border-bottom: 2px solid var(--light);
             color: var(--primary);
         }
 
         .question-block {
-            margin-bottom: 32px;
+            margin-bottom: 25px;
         }
 
         .question {
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .radio-option, .checkbox-option {
@@ -103,69 +105,70 @@
 
         input[type="radio"], input[type="checkbox"] {
             accent-color: var(--primary);
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
         }
 
-        input[type="text"], textarea, select {
+        input[type="text"], textarea, select, #email-block input[type="email"] {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #E5E7EB;
             border-radius: var(--border-radius);
-            font-size: 16px;
-            margin-top: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-top: 6px;
+            box-sizing: border-box;
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 80px;
         }
 
         .other-specify {
-            margin-top: 8px;
-            display: none; /* Initially hidden */
+            margin-top: 6px;
+            display: none;
         }
 
-        input[type="radio"]:checked ~ .other-specify,
-        input[type="checkbox"]:checked ~ .other-specify {
+        input[type="checkbox"][id$="other"]:checked ~ .other-specify {
             display: block;
         }
 
         .rank-question .options {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
         .rank-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .rank-item select {
-            width: 60px;
+            width: 55px;
         }
 
         .importance-grid {
             display: grid;
             grid-template-columns: 1fr repeat(4, auto);
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
         .importance-header {
-            font-size: 14px;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
             font-weight: 600;
             text-align: center;
-            padding: 8px 4px;
+            padding: 6px 3px;
         }
 
         .importance-feature {
-            padding: 12px 8px;
+            padding: 10px 6px;
             border-top: 1px solid #E5E7EB;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
         }
 
         .importance-radio {
@@ -173,16 +176,16 @@
         }
 
         .submit-row {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
         }
 
         button {
-            background-color: var(--primary);
+            background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            padding: 10px 20px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 600;
             border-radius: var(--border-radius);
             cursor: pointer;
@@ -195,42 +198,172 @@
 
         .optional-section {
             margin-top: 40px;
-            padding-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid #E5E7EB;
+        }
+
+        #email-block input[type="email"] {
+            padding: 10px; /* Match other inputs */
+            font-size: clamp(0.9rem, 2.5vw, 1rem); /* Match other inputs */
+            border: 1px solid #E5E7EB; /* Match other inputs */
+            background-color: var(--white);
+            transition: border-color 0.2s ease;
+        }
+
+        #email-block input[type="email"]:focus {
+            border-color: var(--secondary);
+            outline: none;
         }
 
         .thank-you {
             text-align: center;
-            font-size: 18px;
-            margin: 40px 0;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin: 30px 0;
             color: var(--white);
         }
-        
-        /* Responsive adjustments */
+
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .survey-header {
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                max-width: 120px;
+            }
+
+            .survey-card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .section-title {
+                padding-bottom: 8px;
+            }
+
+            .question-block {
+                margin-bottom: 20px;
+            }
+
+            .question {
+                margin-bottom: 10px;
+            }
+
+            .options {
+                gap: 8px;
+            }
+
+            .radio-option, .checkbox-option {
+                gap: 6px;
+            }
+
+            input[type="radio"], input[type="checkbox"] {
+                width: 14px;
+                height: 14px;
+            }
+
+            input[type="text"], textarea, select, #email-block input[type="email"] {
+                padding: 8px;
+            }
+
+            textarea {
+                min-height: 70px;
+            }
+
+            .rank-question .options {
+                grid-template-columns: 1fr;
+            }
+
+            .rank-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .rank-item select {
+                width: 100%;
+                max-width: 100px;
+            }
+
             .importance-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .importance-header {
                 display: none;
             }
-            
+
             .importance-feature {
                 border-top: none;
                 font-weight: 600;
+                padding: 8px 0;
             }
-            
+
             .importance-radio {
                 display: flex;
                 justify-content: space-between;
-                margin-bottom: 16px;
+                margin-bottom: 12px;
                 border-bottom: 1px solid #E5E7EB;
-                padding-bottom: 16px;
+                padding-bottom: 12px;
             }
-            
+
             .importance-radio label {
-                font-size: 14px;
+                font-size: clamp(0.75rem, 2vw, 0.875rem);
+            }
+
+            .submit-row {
+                margin-top: 20px;
+            }
+
+            button {
+                padding: 8px 16px;
+            }
+
+            .optional-section {
+                margin-top: 30px;
+                padding-top: 15px;
+            }
+
+            .thank-you {
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 100px;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin-bottom: 15px;
+            }
+
+            .survey-card {
+                padding: 12px;
+            }
+
+            .question-block {
+                margin-bottom: 15px;
+            }
+
+            input[type="text"], textarea, select, #email-block input[type="email"] {
+                padding: 7px;
+            }
+
+            .submit-row {
+                margin-top: 15px;
             }
         }
     </style>
@@ -238,23 +371,20 @@
 <body>
     <div class="container">
         <div class="survey-header">
-            <!-- DesignMe logo from Cloudinary -->
             <img src="https://res.cloudinary.com/dreamsavvy/image/upload/v1747323397/designMe_Logo-removebg-preview_ntdaxb.png" alt="DesignMe Logo" class="logo">
             <h1>Pre-Launch Survey</h1>
             <p>Thank you for your interest in DesignMe! As we prepare to launch our new design platform, your feedback will help us create a product that truly meets your needs.</p>
         </div>
 
-        <form name="designme-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field" netlify>
-            <!-- Netlify form detection fields -->
+        <form name="designme-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="designme-survey" />
             <p class="hidden" style="display:none">
                 <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
-            <!-- Design Tool Experience & Needs -->
+
             <div class="survey-card">
                 <h2 class="section-title">Design Tool Experience & Needs</h2>
                 
-                <!-- Question 1: Frequency -->
                 <div class="question-block">
                     <label class="question">1. How frequently do you use design tools in your work or personal projects?</label>
                     <div class="options">
@@ -284,8 +414,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Question 2: Use cases -->
+
                 <div class="question-block">
                     <label class="question">2. What are your primary use cases for design tools? (Select all that apply)</label>
                     <div class="options">
@@ -320,8 +449,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Question 3: Current tools -->
+
                 <div class="question-block">
                     <label class="question">3. Which design tools do you currently use? (Select all that apply)</label>
                     <div class="options">
@@ -356,14 +484,12 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Question 4: Pain points -->
+
                 <div class="question-block">
                     <label class="question">4. What is your biggest pain point or challenge with your current design tools?</label>
                     <textarea name="pain_points" required></textarea>
                 </div>
-                
-                <!-- Question 5: Satisfaction -->
+
                 <div class="question-block">
                     <label class="question">5. On a scale of 1-10, how satisfied are you with your current design solution(s)?</label>
                     <div class="options">
@@ -384,11 +510,9 @@
                 </div>
             </div>
 
-            <!-- DesignMe Features & Competitive Edge -->
             <div class="survey-card">
                 <h2 class="section-title">DesignMe Features & Competitive Edge</h2>
-                
-                <!-- Question 6: Feature importance -->
+
                 <div class="question-block rank-question">
                     <label class="question">6. Which of the following features would be most important for you in a new design tool? (Rank from 1-5, with 1 being most important)</label>
                     <div class="options">
@@ -449,14 +573,12 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Question 7: Missing features -->
+
                 <div class="question-block">
                     <label class="question">7. What features are missing from your current design tools that you wish existed?</label>
                     <textarea name="missing_features" required></textarea>
                 </div>
-                
-                <!-- Question 8: Feature importance -->
+
                 <div class="question-block">
                     <label class="question">8. How important would the following potential DesignMe features be to you?</label>
                     <div class="importance-grid">
@@ -465,7 +587,7 @@
                         <div class="importance-header">Somewhat important</div>
                         <div class="importance-header">Very important</div>
                         <div class="importance-header">Essential</div>
-                        
+
                         <div class="importance-feature">Real-time team collaboration</div>
                         <div class="importance-radio">
                             <input type="radio" id="collab-1" name="importance_collaboration" value="Not important" required>
@@ -483,7 +605,7 @@
                             <input type="radio" id="collab-4" name="importance_collaboration" value="Essential">
                             <label for="collab-4"></label>
                         </div>
-                        
+
                         <div class="importance-feature">Mobile app with full functionality</div>
                         <div class="importance-radio">
                             <input type="radio" id="mobile-1" name="importance_mobile" value="Not important" required>
@@ -501,7 +623,7 @@
                             <input type="radio" id="mobile-4" name="importance_mobile" value="Essential">
                             <label for="mobile-4"></label>
                         </div>
-                        
+
                         <div class="importance-feature">Advanced animation capabilities</div>
                         <div class="importance-radio">
                             <input type="radio" id="anim-1" name="importance_animation" value="Not important" required>
@@ -519,7 +641,7 @@
                             <input type="radio" id="anim-4" name="importance_animation" value="Essential">
                             <label for="anim-4"></label>
                         </div>
-                        
+
                         <div class="importance-feature">AI-powered content generation</div>
                         <div class="importance-radio">
                             <input type="radio" id="ai-1" name="importance_ai" value="Not important" required>
@@ -537,7 +659,7 @@
                             <input type="radio" id="ai-4" name="importance_ai" value="Essential">
                             <label for="ai-4"></label>
                         </div>
-                        
+
                         <div class="importance-feature">Design analytics and insights</div>
                         <div class="importance-radio">
                             <input type="radio" id="analytics-1" name="importance_analytics" value="Not important" required>
@@ -555,7 +677,7 @@
                             <input type="radio" id="analytics-4" name="importance_analytics" value="Essential">
                             <label for="analytics-4"></label>
                         </div>
-                        
+
                         <div class="importance-feature">Extensive asset library</div>
                         <div class="importance-radio">
                             <input type="radio" id="library-1" name="importance_library" value="Not important" required>
@@ -575,24 +697,21 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Question 9: Motivation to switch -->
+
                 <div class="question-block">
                     <label class="question">9. What would motivate you to switch from your current design tool(s) to a new platform like DesignMe?</label>
                     <textarea name="motivation_switch" required></textarea>
                 </div>
-                
-                <!-- Question 10: Revolutionary feature -->
+
                 <div class="question-block">
                     <label class="question">10. If you could have one feature in a design tool that would revolutionize your workflow, what would it be?</label>
                     <textarea name="revolutionary_feature" required></textarea>
                 </div>
             </div>
 
-            <!-- Additional Information -->
             <div class="survey-card optional-section">
                 <h2 class="section-title">Additional Information (Optional)</h2>
-                
+
                 <div class="question-block">
                     <label class="question">What is your design skill level?</label>
                     <div class="options">
@@ -605,12 +724,12 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="question-block">
                     <label class="question">What industry do you work in?</label>
                     <input type="text" name="industry" placeholder="E.g., Marketing, Education, Technology...">
                 </div>
-                
+
                 <div class="question-block">
                     <label class="question">Would you be interested in participating in beta testing for DesignMe?</label>
                     <div class="options">
@@ -624,7 +743,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="question-block" id="email-block">
                     <label class="question">Email address (if interested in updates or beta testing)</label>
                     <input type="email" name="email" placeholder="you@example.com">
@@ -641,10 +760,8 @@
         </form>
     </div>
 
-    <!-- Form handling script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Show "other" input fields when "other" options are selected
             const otherCheckboxes = document.querySelectorAll('input[type="checkbox"][id$="other"]');
             otherCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
@@ -659,37 +776,22 @@
                 });
             });
 
-            // Show email field only if beta testing interest is "Yes"
             const betaYes = document.getElementById('beta-yes');
             const betaNo = document.getElementById('beta-no');
             const emailBlock = document.getElementById('email-block');
-            
+
             betaYes.addEventListener('change', function() {
                 if (this.checked) {
                     emailBlock.style.display = 'block';
                     emailBlock.querySelector('input[name="email"]').setAttribute('required', 'required');
                 }
             });
-            
+
             betaNo.addEventListener('change', function() {
                 if (this.checked) {
                     emailBlock.style.display = 'none';
                     emailBlock.querySelector('input[name="email"]').removeAttribute('required');
                 }
-            });
-            
-            <!-- Form submission handler -->
-            const form = document.getElementById('designme-survey');
-            form.addEventListener('submit', function(event) {
-                // The form will be handled by Netlify's built-in form handling
-                // We don't need to prevent default or manually process the submission
-                
-                // You can add additional validation or UI feedback here if needed
-                console.log('Form submitted to Netlify');
-                
-                // Note: Netlify will handle redirects after form submission
-                // You can set up a custom success page in your Netlify settings
-            });
             });
         });
     </script>
